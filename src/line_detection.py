@@ -13,11 +13,13 @@ class LineDetector:
 
         if r >= 30 and g >= 30 and b >= 30:
             return "white"
-        elif b > 10 and r < 10 and g < 10:
+        elif b - r >= 10 and b - g >= 10:
             return "blue"
         else:
             return "orange"
 
+
     def check_line(self):
         color = self.color_sensor.rgb()
+        print("rgb: ", color)
         return self.recognize_color(color)

@@ -75,7 +75,7 @@ while passed_lines < 12:
         "target:", steering.target_angle, 
         "steer:", steering_motor.angle(), 
         "color: ", line,
-        "distance", new_distance
+        "distance: ", new_distance
     )
     # if timer.time() > 5 * 1000:
     #     steering.increase_target_angle(90)

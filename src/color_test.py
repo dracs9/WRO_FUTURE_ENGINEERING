@@ -1,3 +1,4 @@
+#!/usr/bin/env pybricks-micropython
 from config import CHECK_DISTANCE
 from line_detection import LineDetector
 from pybricks.ev3devices import (
@@ -33,7 +34,7 @@ def recognize_color(rgb: tuple[int, int, int]):
     
     if r >= 30 and g >= 30 and b >= 30:
         return "white"
-    elif b > 10 and r < 10 and g < 10:
+    elif b - r >= 10 and b - g >= 10:
         return "blue"
     else:
         return "orange"
