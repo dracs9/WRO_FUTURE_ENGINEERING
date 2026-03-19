@@ -11,12 +11,13 @@ class LineDetector:
         g = rgb[1]
         b = rgb[2]
 
-        if r >= 30 and g >= 30 and b >= 30:
+        if sum(rgb) >= 90:
             return "white"
         elif b - r >= 10 and b - g >= 10:
             return "blue"
         else:
             return "orange"
+
 
 
     def check_line(self):

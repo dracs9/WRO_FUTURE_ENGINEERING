@@ -1,14 +1,8 @@
 #!/usr/bin/env pybricks-micropython
 from config import CHECK_DISTANCE
 from line_detection import LineDetector
-from pybricks.ev3devices import (
-    ColorSensor,
-    GyroSensor,
-    Motor,
-    UltrasonicSensor,
-)
+from pybricks.ev3devices import ColorSensor, GyroSensor, Motor, UltrasonicSensor
 from pybricks.hubs import EV3Brick
-
 from pybricks.parameters import Port
 from pybricks.tools import StopWatch, wait
 from steering import Steering
@@ -32,7 +26,6 @@ wall_distance_keeper = DistanceKeeper(ultrasonic_left, ultrasonic_right)
 passed_lines = 0
 distance = 0
 
-
 steering.reset_angles()
 steering.reset_time()
 rear_motor.reset_angle(0)
@@ -53,33 +46,34 @@ while passed_lines < 12:
     line = line_checker.check_line()
     new_distance = get_distance(rear_motor)
     if abs(new_distance - distance) > CHECK_DISTANCE:
-        if line != 'white' and first:
+        if line != "white" and first:
             first = False
-            if line == 'blue':
+            if line == "blue":
                 clockwise = False
-                
 
         if clockwise and line == "orange":
-            ev3.speaker.beep() 
+            ev3.speaker.beep()
             steering.increase_target_angle(90)
             distance = new_distance
             passed_lines += 1
         elif not clockwise and line == "blue":
-            ev3.speaker.beep() 
+            ev3.speaker.beep()
             steering.increase_target_angle(-90)
             distance = new_distance
             passed_lines += 1
 
     print(
-        "heading:", gyro.angle(), 
-        "target:", steering.target_angle, 
-        "steer:", steering_motor.angle(), 
-        "color: ", line,
-        "distance: ", new_distance
+        "heading:",
+        gyro.angle(),
+        "target:",
+        steering.target_angle,
+        "steer:",
+        steering_motor.angle(),
+        "color:",
+        line,
+        "distance:",
+        new_distance,
     )
-    # if timer.time() > 5 * 1000:
-    #     steering.increase_target_angle(90)
-    #     timer.reset()
     wait(20)
 
 

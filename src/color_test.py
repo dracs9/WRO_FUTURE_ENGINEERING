@@ -27,17 +27,19 @@ color_sensor = ColorSensor(Port.S3)
 # WHITE = (30, 30, 77)
 # BLUE = (7, 10, 20)
 
+
 def recognize_color(rgb: tuple[int, int, int]):
     r = rgb[0]
     g = rgb[1]
     b = rgb[2]
-    
-    if r >= 30 and g >= 30 and b >= 30:
+
+    if sum(rgb) >= 100:
         return "white"
     elif b - r >= 10 and b - g >= 10:
         return "blue"
     else:
         return "orange"
+
 
 while True:
     color = color_sensor.rgb()
