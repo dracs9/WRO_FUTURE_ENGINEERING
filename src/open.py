@@ -38,10 +38,12 @@ timer = StopWatch()
 
 first = True
 clockwise = True
+correction = 0
 
 while passed_lines < 12:
-    correction = wall_distance_keeper.correction(clockwise)
-    steering.pid()
+    if not first:
+        correction = wall_distance_keeper.correction(clockwise)
+    steering.pid(extra=correction)
 
     line = line_checker.check_line()
     new_distance = get_distance(rear_motor)
