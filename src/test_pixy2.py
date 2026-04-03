@@ -16,6 +16,10 @@ cam.set_lamp(False, False)
 # print(cam.get_linetracking_data()) #TODO: this crashes,unstable: Read wrong type of packet: 3 instead of 49
 
 while True:
-    print("red: ", cam.get_blocks(1, 8))
-    print("green: ", cam.get_blocks(2, 8))
+    red = cam.get_blocks(1, 1)
+    green = cam.get_blocks(2, 1)
+    if red[0] > 0:
+        print("red", red[1][0].x_center)
+    if green[0] > 0:
+        print("green", green[1][0].x_center)
     wait(1000)
